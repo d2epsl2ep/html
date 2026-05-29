@@ -133,7 +133,7 @@ function parseFrontmatter(mdText) {
 // ==========================================
 
 // posts.json 的文件路径（仅存储 slug 列表）
-const POSTS_JSON = '../posts/posts.json';
+const POSTS_JSON = 'posts/posts.json';
 // 缓存文章列表，避免重复请求
 let postsCache = null;
 
@@ -159,7 +159,7 @@ async function fetchPosts(force) {
     for (const slug of slugs) {
       try {
         // 请求对应的 Markdown 文件
-        const mdRes = await fetch(`../posts/${slug}.md`);
+        const mdRes = await fetch(`posts/${slug}.md`);
         // 如果文件不存在或请求失败，跳过
         if (!mdRes.ok) continue;
         // 读取文件文本内容
