@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Post — My Blog</title>                        <!-- 标题会在 JS 加载后被替换为文章标题 -->
   <meta name="description" content="Blog post">        <!-- 描述会在 JS 加载后被替换为文章摘要 -->
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="../css/style.css">          <!-- 全局样式 -->
+  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');</script>
 </head>
 <body>
 
@@ -26,6 +28,9 @@
       </nav>
     </div>
   </header>
+
+  <!-- ===== 阅读进度条 ===== -->
+  <div class="progress-bar"></div>
 
   <!-- ===== 两栏布局 ===== -->
   <div class="page-wrap" style="margin-top: 64px;">
@@ -96,6 +101,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

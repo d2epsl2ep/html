@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- 移动端视口设置 -->
   <title>My Blog — 黑白之间</title>                      <!-- 浏览器标签页标题 -->
   <meta name="description" content="A minimalist blog with black & white aesthetics.">  <!-- SEO 页面描述 -->
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="../css/style.css">          <!-- 引入全局样式表 -->
+  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');</script>
 </head>
 <body>
 
@@ -99,6 +101,6 @@
   <!-- 引入 Markdown 解析库 marked.js（CDN） -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <!-- 引入主 JavaScript 文件，包含所有动态渲染逻辑 -->
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

@@ -12,20 +12,70 @@
   if (!toggle || !nav) return;
 
   // 点击汉堡按钮时，切换导航菜单的显示状态
-  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    toggle.classList.toggle('active');
+  });
 
   // 遍历导航中的所有链接
   nav.querySelectorAll('a').forEach(link => {
     // 点击链接后自动关闭菜单
-    link.addEventListener('click', () => nav.classList.remove('open'));
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.classList.remove('active');
+    });
   });
 
   // 点击页面任意位置时
   document.addEventListener('click', (e) => {
     // 如果点击不在header区域内，则关闭菜单
-    if (!e.target.closest('.header-inner')) nav.classList.remove('open');
+    if (!e.target.closest('.header-inner')) {
+      nav.classList.remove('open');
+      toggle.classList.remove('active');
+    }
   });
 })(); // 立即执行此函数
+
+
+// ==========================================
+// 暗黑模式切换
+// ==========================================
+
+(function initDarkMode() {
+  var html = document.documentElement;
+  var stored = localStorage.getItem('theme');
+
+  // 应用已保存的主题
+  if (stored === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  // 创建切换按钮
+  var toggle = document.createElement('button');
+  toggle.className = 'theme-toggle';
+  toggle.setAttribute('aria-label', '切换暗黑模式');
+  toggle.innerHTML = stored === 'dark' ? '☀' : '☾';
+
+  // 插入到导航栏
+  var headerInner = document.querySelector('.header-inner');
+  if (headerInner) {
+    headerInner.appendChild(toggle);
+  }
+
+  // 点击切换
+  toggle.addEventListener('click', function () {
+    var isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+      toggle.innerHTML = '☾';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+      toggle.innerHTML = '☀';
+    }
+  });
+})();
 
 
 // ==========================================
@@ -83,7 +133,7 @@ function parseFrontmatter(mdText) {
 // ==========================================
 
 // posts.json 的文件路径（仅存储 slug 列表）
-const POSTS_JSON = 'posts/posts.json';
+const POSTS_JSON = '../posts/posts.json';
 // 缓存文章列表，避免重复请求
 let postsCache = null;
 
@@ -109,7 +159,7 @@ async function fetchPosts(force) {
     for (const slug of slugs) {
       try {
         // 请求对应的 Markdown 文件
-        const mdRes = await fetch(`posts/${slug}.md`);
+        const mdRes = await fetch(`../posts/${slug}.md`);
         // 如果文件不存在或请求失败，跳过
         if (!mdRes.ok) continue;
         // 读取文件文本内容
@@ -152,7 +202,7 @@ function getSlug() {
  */
 function postUrl(slug) {
   // 将 slug 编码后拼接到 post.html 的查询参数中
-  return `html/post.html?slug=${encodeURIComponent(slug)}`;
+  return `post.html?slug=${encodeURIComponent(slug)}`;
 }
 
 
@@ -375,11 +425,43 @@ async function initArchive() {
 
 
 // ==========================================
-// 页面初始化入口
-// 根据页面包含的元素决定执行哪些功能
+// 滚动效果：header 阴影 + 阅读进度条
 // ==========================================
 
-// 等待 DOM 加载完成后执行
+(function initScrollEffects() {
+  var header = document.querySelector('.site-header');
+  var progressBar = document.querySelector('.progress-bar');
+  var ticking = false;
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        var scrollY = window.scrollY;
+
+        // Header shadow
+        if (header) {
+          header.classList.toggle('scrolled', scrollY > 10);
+        }
+
+        // Reading progress bar
+        if (progressBar) {
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          var progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+          progressBar.style.width = progress + '%';
+        }
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+
+
+// ==========================================
+// 页面初始化入口
+// ==========================================
+
 document.addEventListener('DOMContentLoaded', () => {
   // 所有页面都尝试初始化侧边栏
   initSidebar();
