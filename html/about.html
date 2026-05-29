@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- 关于页面，展示博主信息和博客介绍 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — My Blog</title>
+  <meta name="description" content="About this blog and the person behind it.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== 顶部固定导航栏 ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-title"><a href="index.html">My Blog</a></div>
+      <nav>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>  <!-- active 高亮当前页 -->
+          <li><a href="archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 单栏布局：页面主体 ===== -->
+  <div class="page-wrap single-column about-page">
+
+    <main>
+      <h1 class="page-title">About</h1>   <!-- 页面大标题 -->
+
+      <div class="about-content">
+        <!-- 自我介绍 -->
+        <p>
+          Hello, I'm <strong>M</strong>. I'm a writer and developer who believes in the power of simplicity.
+          This blog is where I share my thoughts on code, design, literature, and life — all in black and white.
+        </p>
+
+        <!-- 博客初衷 -->
+        <p>
+          I started this blog as a personal project — a quiet corner of the internet where I can write freely
+          without the noise of social media. Here, I explore ideas that matter to me, document what I learn,
+          and practice the craft of writing.
+        </p>
+
+        <!-- 个人兴趣 -->
+        <p>
+          When I'm not writing, you'll find me reading, taking black-and-white photographs,
+          or working on open-source projects. I'm drawn to minimalism in all its forms —
+          clean code, simple designs, and honest writing.
+        </p>
+
+        <!-- 技术说明 -->
+        <p>
+          This blog is built with pure HTML and CSS, deployed on GitHub Pages.
+          It's intentionally simple — no frameworks, no JavaScript frameworks, no tracking.
+          Just words on a page, the way it should be.
+        </p>
+
+        <!-- 联系方式 -->
+        <p>
+          If you'd like to reach out, feel free to find me on <a href="#">GitHub</a> or <a href="#">Twitter</a>.
+        </p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <p>&copy; 2026 <a href="index.html">My Blog</a>. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

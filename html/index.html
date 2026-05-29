@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- 以中文为主要语言的博客首页 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">                               <!-- 字符编码：UTF-8，支持中文 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- 移动端视口设置 -->
+  <title>My Blog — 黑白之间</title>                      <!-- 浏览器标签页标题 -->
+  <meta name="description" content="A minimalist blog with black & white aesthetics.">  <!-- SEO 页面描述 -->
+  <link rel="stylesheet" href="css/style.css">          <!-- 引入全局样式表 -->
+</head>
+<body>
+
+  <!-- ===== 顶部固定导航栏 ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- 站点名称，点击返回首页 -->
+      <div class="site-title"><a href="index.html">My Blog</a></div>
+      <nav>
+        <!-- 移动端汉堡菜单按钮，点击展开/收起导航 -->
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span>   <!-- 三条横线中的第一条 -->
+          <span></span>   <!-- 三条横线中的第二条 -->
+          <span></span>   <!-- 三条横线中的第三条 -->
+        </button>
+        <!-- 主导航链接列表 -->
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>    <!-- 首页，active 高亮 -->
+          <li><a href="about.html">About</a></li>                  <!-- 关于页面 -->
+          <li><a href="archive.html">Archive</a></li>              <!-- 归档页面 -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero 区域：博客标语 ===== -->
+  <section class="hero">
+    <h1>Thoughts in Black &amp; White</h1>    <!-- 大标题 -->
+    <p>A quiet place for words, ideas, and stories. Minimal. Simple. Timeless.</p>  <!-- 副标题 -->
+  </section>
+
+  <!-- ===== 两栏主布局：左侧文章列表 + 右侧边栏 ===== -->
+  <div class="page-wrap">
+
+    <!-- 左侧：文章列表，由 main.js 的 initIndex() 动态渲染 -->
+    <main id="post-list">
+      <!-- Posts rendered dynamically by main.js -->
+    </main>
+
+    <!-- ===== 右侧边栏 ===== -->
+    <aside class="sidebar">
+
+      <!-- 关于作者 -->
+      <div class="sidebar-widget about-widget">
+        <h3>About</h3>                               <!-- 小部件标题 -->
+        <div class="avatar">
+          <span>M</span>                              <!-- 头像占位文字 -->
+        </div>
+        <p>Writer &amp; developer. I write about code, design, and the quiet things in life. This is my corner of the web.</p>
+        <div class="social-links">
+          <a href="#">GitHub</a>                      <!-- GitHub 链接 -->
+          <a href="#">Twitter</a>                     <!-- Twitter 链接 -->
+          <a href="#">RSS</a>                         <!-- RSS 订阅链接 -->
+        </div>
+      </div>
+
+      <!-- 分类列表，由 main.js 动态渲染 -->
+      <div class="sidebar-widget">
+        <h3>Categories</h3>
+        <ul class="category-list" id="sidebar-categories">
+          <li class="loading-placeholder">Loading...</li>  <!-- 加载中占位 -->
+        </ul>
+      </div>
+
+      <!-- 最新文章列表，由 main.js 动态渲染 -->
+      <div class="sidebar-widget">
+        <h3>Recent Posts</h3>
+        <ul class="recent-posts-list" id="sidebar-recent">
+          <li class="loading-placeholder">Loading...</li>
+        </ul>
+      </div>
+
+      <!-- 标签云，由 main.js 动态渲染 -->
+      <div class="sidebar-widget">
+        <h3>Tags</h3>
+        <div class="tag-cloud" id="sidebar-tags">
+          <span class="loading-placeholder">Loading...</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <p>&copy; 2026 <a href="index.html">My Blog</a>. All rights reserved.</p>
+  </footer>
+
+  <!-- 引入 Markdown 解析库 marked.js（CDN） -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- 引入主 JavaScript 文件，包含所有动态渲染逻辑 -->
+  <script src="js/main.js"></script>
+</body>
+</html>
